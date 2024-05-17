@@ -1,0 +1,128 @@
+body {
+  padding: 5% 5%;
+  text-align: center;
+  background-image: url("https://cloudfront-us-east-1.images.arcpublishing.com/pmn/SZHNDWWOPRFKNHXPVF3YGW6KZA.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5%;
+  background-color: rgba(242, 242, 242, 0.9);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 80%;
+  max-width: 90%;
+}
+
+@media screen and (min-width: 1000px) {
+  .form-container {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .form-container {
+    scale: 2;
+    width: 40%;
+    position: fixed;
+    left: 70%;
+    top: 65%;
+  }
+}
+
+
+
+
+
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-subheader {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 2%;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup {
+  width: 400px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.popup-open {
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup h1 {
+  font-size: 38px;
+  font-weight: 1000;
+  margin: 30px 0 10px;
+}
+
+.popup button {
+  width: 50%;
+  margin-top: 10px;
+  padding: 10px 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}

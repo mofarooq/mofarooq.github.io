@@ -1,0 +1,109 @@
+
+
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>PPA Tow Notification</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<div class="form-container">
+  <div class="form-header">
+    <h1>PPA Tow Notifications</h1>
+  </div>
+
+  <div class="form-subheader">
+    <p>Fill out this form with your name, license plate, email, and phone number. If the PPA tows your car, you will be alerted via text and email. The alert will include important information such as the tow location, tow date and time, the phone number and the address of the tow lot where your car was towed to, and the documents needed in order to get your car back.</p>
+  </div>
+
+  <form action="submit-form.php" method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="licensePlate">License Plate:</label>
+      <input type="text" id="licensePlate" name="licensePlate" placeholder="Ex. ABC1234"required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Ex. ihatetheppa@gmail.com"required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Ex. 5146267777" required>
+       <small id="phoneError" class="error-message"></small>
+    </div>
+
+    <div class ="container">
+      <button class="submit-btn" type="submit" value="Submit" id="Submit"> Submit </button>
+      <div class="popup" id="popup">
+        <h1>Thank you!</h1>
+        <p>You have successfully signed up</p>
+        <button type="button" onclick="closePopup()">Ok</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<!-- Submit form without going to another page -->
+<script>
+  $(document).ready(function() {
+    $('form').submit(function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      // Perform AJAX request to submit the form data
+      $.ajax({
+        type: 'POST',
+        url: 'submit-form.php', // Replace with the URL of your PHP script handling the form submission
+        data: $(this).serialize(), // Serialize the form data
+        success: function(response) {
+          // Handle the response from the server
+          //alert('Form submitted successfully!');
+
+          $('#popup').addClass('popup-open');
+
+        },
+        error: function() {
+          alert('Error occurred while submitting the form.');
+        }
+      });
+    });
+  });
+  </script>
+  <script> 
+  let popup = $(document).getElementById("popup");
+  function closePopup() {
+      $('#popup').removeClass('popup-open');
+  }
+  </script>
+  <script>
+  // Get references to the form and phone number input
+  let form = $(document).querySelector('form');
+  let phoneNumberInput = $(document).getElementById('phone');
+  let phoneError = $(document).getElementById('phoneError');
+
+  // Add event listener to the form's submit event
+  form.addEventListener('submit', function(event) {
+    // Check if the phone number input is valid
+    if (!phoneNumberInput.checkValidity()) {
+      // Prevent form submission
+      event.preventDefault();
+
+      // Display a custom error message
+      phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+      phoneNumberInput.classList.add('error');
+    } else {
+      // Clear any previous error messages
+      phoneError.textContent = '';
+      phoneNumberInput.classList.remove('error');
+    }
+  });
+</script>
+
+  </body>
